@@ -1,0 +1,16 @@
+{% extends "learning_logs/base.html" %}
+
+{% block page_header %}
+  <h1>Topics</h1>
+{% endblock page_header %}
+{% block content %}
+<p>Topics</p>
+<ul>
+    {% for topic in topics %}<!--this is a template loop. we loop through the topics in the context dictionary-->
+      <li><h3><a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a></h3></li><!--the double brace allow to print a template variable. here we print the topic variable of the loop-->
+    {% empty %}<!--in case the topics is empty we print this-->
+      <li><h3> no topic added yet.</h3></li>
+    {% endfor %}
+</ul>
+<h3><a href="{% url 'learning_logs:new_topic' %}">Add a new topic</a></h3>
+{% endblock content %}
